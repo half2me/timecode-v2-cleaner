@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"github.com/half2me/timecode-v2-cleaner/timecode"
 	"os"
 )
 import "fmt"
@@ -42,13 +43,13 @@ func main() {
 			_ = f.Close()
 		}(out)
 
-		_, err = CleanTimecodeFile(in, out, *precision)
+		_, err = timecode.CleanTimecodeFile(in, out, *precision)
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
 		}
 	} else {
-		valid, err := CheckTimeCodeFile(in, *precision)
+		valid, err := timecode.CheckTimeCodeFile(in, *precision)
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
